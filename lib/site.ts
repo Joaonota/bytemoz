@@ -144,9 +144,19 @@ export type Project = {
   tags?: string[];
 };
 
-// Adicione aqui os projetos reais quando puderem ser publicados.
+// Projetos reais desenvolvidos pela ByteMoz. O primeiro aparece em destaque.
 // Enquanto a lista estiver vazia, o site mostra uma estrutura de apresentação neutra.
-export const PROJECTS: Project[] = [];
+export const PROJECTS: Project[] = [
+  {
+    title: "Click Creators Agency",
+    category: "Website institucional",
+    summary:
+      "Website para uma agência criativa da Beira dedicada a redes sociais, conteúdo e produção audiovisual. Apresenta os serviços, o portfólio, a rede de criadores e os parceiros da agência, com versão em português e inglês e modo claro/escuro.",
+    image: "/images/projetos/click-creators-agency.jpg",
+    href: "https://www.clickcreatorsagency.com/",
+    tags: ["Website", "Bilingue PT/EN", "Portfólio", "Modo claro/escuro"],
+  },
+];
 
 export const PROJECT_TYPES = [
   "Sistema web",
