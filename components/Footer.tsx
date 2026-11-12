@@ -11,7 +11,7 @@ export function Footer() {
           <Logo />
           <p className="mt-5 font-mono text-xs uppercase tracking-[0.18em] text-subtle">{SITE.slogan}</p>
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-muted">
-            Empresa moçambicana de tecnologia. Desenvolvemos sistemas, plataformas e soluções digitais à medida.
+            Empresa moçambicana de tecnologia. Software, websites, infraestrutura de TI, suporte técnico e segurança.
           </p>
           {SOCIAL.length > 0 && (
             <ul className="mt-6 flex gap-2">

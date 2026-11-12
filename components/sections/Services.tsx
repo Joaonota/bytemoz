@@ -1,13 +1,14 @@
-import { AppWindow, Blocks, Building2, CodeXml, Lightbulb, Workflow } from "lucide-react";
-import { SERVICES } from "@/lib/site";
+import { Cctv, CodeXml, DatabaseZap, Globe, Headset, Lightbulb, Network } from "lucide-react";
+import { SERVICE_GROUPS, SERVICES } from "@/lib/site";
 import { SectionHeader } from "../SectionHeader";
 
 const ICONS = {
-  web: CodeXml,
-  apps: AppWindow,
-  automation: Workflow,
-  enterprise: Building2,
-  product: Blocks,
+  network: Network,
+  helpdesk: Headset,
+  data: DatabaseZap,
+  cctv: Cctv,
+  software: CodeXml,
+  web: Globe,
   consulting: Lightbulb,
 } as const;
 
@@ -19,42 +20,60 @@ export function Services() {
           <SectionHeader
             id="servicos-titulo"
             eyebrow="O que fazemos"
-            title="Soluções digitais do conceito à operação."
+            title="Tecnologia para cada área da sua organização."
           />
           <p className="lead max-w-md lg:pb-1" data-reveal>
-            Desenvolvemos tecnologia que se adapta ao seu negócio — e não o contrário.
+            Da infraestrutura ao software, cuidamos da tecnologia de que a sua empresa precisa para funcionar e crescer.
           </p>
         </div>
 
-        <ul className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {SERVICES.map((s, i) => {
-            const Icon = ICONS[s.icon];
-            return (
-              <li
-                key={s.title}
+        {SERVICE_GROUPS.map((group, g) => {
+          const items = SERVICES.filter((s) => s.group === group.id);
+          const offset = SERVICES.findIndex((s) => s.group === group.id);
+          return (
+            <div key={group.id} className={g === 0 ? "mt-16" : "mt-20"}>
+              <div
                 data-reveal
-                style={{ ["--d" as string]: `${(i % 3) * 80}ms` }}
-                className="card group relative flex flex-col p-7 transition-[border-color,transform] duration-300 hover:-translate-y-1 hover:border-line-strong"
+                className="flex flex-col gap-2 border-b border-line pb-5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
               >
-                <div className="flex items-start justify-between">
-                  <span className="grid size-11 place-items-center rounded-xl border border-line bg-bg text-brand-ink transition-colors duration-300 group-hover:border-brand-ink group-hover:bg-brand group-hover:text-white">
-                    <Icon className="size-5" strokeWidth={1.8} aria-hidden="true" />
-                  </span>
-                  <span className="font-mono text-xs text-subtle">/{String(i + 1).padStart(2, "0")}</span>
-                </div>
-                <h3 className="mt-7 text-lg font-semibold leading-snug tracking-[-0.01em] text-fg">{s.title}</h3>
-                <p className="mt-3 text-[0.9375rem] leading-relaxed text-muted">{s.desc}</p>
-                <ul className="mt-auto flex flex-wrap gap-2 pt-7">
-                  {s.items.map((it) => (
-                    <li key={it} className="rounded-md border border-line px-2.5 py-1 text-xs font-medium text-muted">
-                      {it}
+                <h3 className="flex items-baseline gap-3 text-lg font-semibold text-fg">
+                  <span className="font-mono text-xs font-medium text-brand-ink">0{g + 1}</span>
+                  {group.title}
+                </h3>
+                <p className="max-w-md text-sm text-muted sm:text-right">{group.desc}</p>
+              </div>
+
+              <ul
+                className={`mt-6 grid gap-4 sm:grid-cols-2 ${
+                  items.length === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"
+                }`}
+              >
+                {items.map((s, i) => {
+                  const Icon = ICONS[s.icon];
+                  return (
+                    <li
+                      key={s.title}
+                      data-reveal
+                      style={{ ["--d" as string]: `${i * 70}ms` }}
+                      className={`card group flex flex-col p-7 transition-[border-color,transform] duration-300 hover:-translate-y-1 hover:border-line-strong ${
+                        items.length === 3 && i === 2 ? "sm:col-span-2 lg:col-span-1" : ""
+                      }`}
+                    >
+                      <div className="flex items-start justify-between">
+                        <span className="grid size-11 place-items-center rounded-xl border border-line bg-bg text-brand-ink transition-colors duration-300 group-hover:border-brand-ink group-hover:bg-brand group-hover:text-white">
+                          <Icon className="size-5" strokeWidth={1.8} aria-hidden="true" />
+                        </span>
+                        <span className="font-mono text-xs text-subtle">/{String(offset + i + 1).padStart(2, "0")}</span>
+                      </div>
+                      <h4 className="mt-7 text-lg font-semibold leading-snug tracking-[-0.01em] text-fg [text-wrap:balance]">{s.title}</h4>
+                      <p className="mt-3 text-[0.9375rem] leading-relaxed text-muted">{s.desc}</p>
                     </li>
-                  ))}
-                </ul>
-              </li>
-            );
-          })}
-        </ul>
+                  );
+                })}
+              </ul>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

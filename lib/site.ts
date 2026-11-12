@@ -7,7 +7,7 @@ export const SITE = {
   url: "https://bytemoz.co.mz",
   title: "ByteMoz — Soluções digitais e sistemas web em Moçambique",
   description:
-    "A ByteMoz é uma empresa moçambicana de tecnologia que desenvolve sistemas web, plataformas, aplicações e soluções digitais personalizadas para empresas e empreendedores.",
+    "A ByteMoz é uma empresa moçambicana de tecnologia: desenvolvimento de software e websites, redes e infraestrutura de TI, suporte técnico, segurança de dados e segurança eletrónica para empresas e organizações.",
   email: "bytemoz23@gmail.com",
   phoneDisplay: "+258 84 598 2017",
   phoneHref: "tel:+258845982017",
@@ -31,42 +31,61 @@ export const NAV = [
   { label: "Contacto", href: "#contacto" },
 ];
 
+export const SERVICE_GROUPS = [
+  {
+    id: "infra",
+    title: "Infraestrutura, suporte e segurança",
+    desc: "A base tecnológica que mantém a sua organização a funcionar com estabilidade e segurança.",
+  },
+  {
+    id: "digital",
+    title: "Software e soluções digitais",
+    desc: "Sistemas, plataformas e websites desenvolvidos à medida das necessidades de cada organização.",
+  },
+] as const;
+
 export const SERVICES = [
   {
+    group: "infra",
+    icon: "network",
+    title: "Redes e infraestrutura de TI",
+    desc: "Montagem, configuração, manutenção e gestão de redes informáticas, incluindo fornecimento e instalação de equipamentos de rede.",
+  },
+  {
+    group: "infra",
+    icon: "helpdesk",
+    title: "Helpdesk e suporte técnico",
+    desc: "Suporte técnico para computadores, sistemas e equipamentos informáticos, incluindo diagnóstico, manutenção, configuração e assistência aos utilizadores.",
+  },
+  {
+    group: "infra",
+    icon: "data",
+    title: "Segurança de dados",
+    desc: "Implementação de soluções para proteção, gestão e segurança de dados, contribuindo para reduzir riscos de perda, acesso não autorizado e outros incidentes.",
+  },
+  {
+    group: "infra",
+    icon: "cctv",
+    title: "Segurança eletrónica",
+    desc: "Montagem, configuração e assistência técnica de sistemas de segurança eletrónica, incluindo fornecimento dos equipamentos e materiais necessários para a instalação e manutenção.",
+  },
+  {
+    group: "digital",
+    icon: "software",
+    title: "Desenvolvimento de software",
+    desc: "Desenvolvimento de sistemas, aplicações, plataformas digitais e soluções personalizadas para empresas e organizações.",
+  },
+  {
+    group: "digital",
     icon: "web",
-    title: "Desenvolvimento de sistemas web",
-    desc: "Sistemas de gestão e plataformas internas acessíveis a partir do navegador, seguros e preparados para crescer com a sua organização.",
-    items: ["Sistemas de gestão", "Portais e áreas reservadas", "Painéis administrativos"],
+    title: "Websites e soluções digitais",
+    desc: "Criação de websites institucionais, plataformas e outras soluções digitais para fortalecer a presença e os processos digitais das empresas.",
   },
   {
-    icon: "apps",
-    title: "Aplicações e plataformas digitais",
-    desc: "Aplicações web e móveis que aproximam a sua empresa dos clientes e tornam os seus serviços acessíveis em qualquer lugar.",
-    items: ["Aplicações móveis", "Plataformas de serviços", "Reservas e pedidos online"],
-  },
-  {
-    icon: "automation",
-    title: "Automação de processos",
-    desc: "Eliminamos tarefas manuais e repetitivas, ligando sistemas e fluxos de trabalho para que a equipa se concentre no que importa.",
-    items: ["Fluxos de aprovação", "Integração entre sistemas", "Relatórios automáticos"],
-  },
-  {
-    icon: "enterprise",
-    title: "Soluções empresariais personalizadas",
-    desc: "Ferramentas desenhadas à medida da forma como a sua organização trabalha — da faturação ao controlo de stock e recursos humanos.",
-    items: ["Gestão financeira", "Controlo de stock", "Recursos humanos"],
-  },
-  {
-    icon: "product",
-    title: "Desenvolvimento de produtos digitais",
-    desc: "Da ideia ao lançamento: ajudamos a validar, desenhar e construir produtos digitais com foco no utilizador e no modelo de negócio.",
-    items: ["Protótipos e MVP", "Design de interface", "Evolução contínua"],
-  },
-  {
+    group: "digital",
     icon: "consulting",
     title: "Consultoria e soluções tecnológicas",
-    desc: "Orientação técnica para decisões informadas: escolha de tecnologias, transformação digital e modernização de sistemas existentes.",
-    items: ["Diagnóstico tecnológico", "Planeamento digital", "Modernização de sistemas"],
+    desc: "Análise das necessidades tecnológicas de cada organização e implementação de soluções adequadas para melhorar processos, produtividade e segurança.",
   },
 ] as const;
 
@@ -159,11 +178,12 @@ export const PROJECTS: Project[] = [
 ];
 
 export const PROJECT_TYPES = [
-  "Sistema web",
-  "Aplicação ou plataforma digital",
-  "Automação de processos",
-  "Solução empresarial personalizada",
-  "Produto digital",
+  "Redes e infraestrutura de TI",
+  "Helpdesk e suporte técnico",
+  "Segurança de dados",
+  "Segurança eletrónica",
+  "Desenvolvimento de software",
+  "Website ou solução digital",
   "Consultoria tecnológica",
   "ByteMoz ERP",
   "Outro",

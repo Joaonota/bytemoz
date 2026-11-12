@@ -37,14 +37,14 @@ export function About() {
           <div className="space-y-6 text-[1.0625rem] leading-[1.8] text-muted" data-reveal style={{ ["--d" as string]: "80ms" }}>
             <p>
               A <strong className="font-semibold text-fg">ByteMoz</strong> é uma empresa moçambicana de tecnologia que
-              desenvolve soluções digitais para empresas, instituições e empreendedores. Acreditamos que a tecnologia só
-              faz sentido quando resolve problemas reais — e que as organizações moçambicanas merecem soluções pensadas
-              para a sua realidade.
+              apoia empresas, instituições e empreendedores em todas as frentes tecnológicas — do software e dos websites
+              às redes, ao suporte técnico e à segurança. Acreditamos que a tecnologia só faz sentido quando resolve
+              problemas reais, e que as organizações moçambicanas merecem soluções pensadas para a sua realidade.
             </p>
             <p>
               Trabalhamos lado a lado com os nossos clientes para compreender como funcionam, onde perdem tempo e de que
-              precisam para crescer. A partir daí, desenhamos e construímos sistemas, plataformas e aplicações que
-              simplificam processos, organizam a informação e dão mais controlo sobre o negócio.
+              precisam para crescer. A partir daí, desenvolvemos sistemas e plataformas, montamos e mantemos
+              infraestruturas e protegemos dados e instalações, para que a tecnologia trabalhe a favor do negócio.
             </p>
           </div>
 
