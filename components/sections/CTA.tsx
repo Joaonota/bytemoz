@@ -1,58 +1,45 @@
-"use client";
-
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { ArrowRight, Sparkles } from "lucide-react";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { ArrowRight } from "lucide-react";
 
 export function CTA() {
   return (
-    <section className="py-16 md:py-24 bg-[#070C1A] relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 hero-grid opacity-20" />
-      <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(10,132,255,0.15) 0%, transparent 70%)" }} />
-      <div className="absolute -bottom-24 -right-24 w-80 h-80 rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(0,200,83,0.1) 0%, transparent 70%)" }} />
+    <section aria-labelledby="cta-titulo" className="py-8 md:py-12">
+      <div className="container-x">
+        <div
+          data-reveal
+          className="relative isolate overflow-hidden rounded-3xl bg-navy px-6 py-20 text-center md:px-16 md:py-28 dark:border dark:border-line"
+        >
+          {/* padrão de circuito discreto */}
+          <svg aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full opacity-[0.35]" preserveAspectRatio="none">
+            <defs>
+              <pattern id="cta-grid" width="48" height="48" patternUnits="userSpaceOnUse">
+                <path d="M48 0H0V48" fill="none" stroke="rgba(150,168,210,0.12)" strokeWidth="1" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#cta-grid)" />
+          </svg>
+          <div
+            aria-hidden="true"
+            className="absolute left-1/2 top-0 -z-10 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-[#4c7dff] to-transparent"
+          />
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        <ScrollReveal className="inline-flex items-center gap-2 bg-secondary/10 border border-secondary/20 rounded-full px-4 py-1.5 mb-6">
-          <Sparkles size={14} className="text-secondary" />
-          <span className="text-secondary text-xs sm:text-sm font-medium">Pronto para começar?</span>
-        </ScrollReveal>
-
-        <ScrollReveal delay={0.1}>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-            Leve a sua empresa ao <br className="hidden sm:block" />
-            <span className="gradient-text">próximo nível</span> hoje mesmo!
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#7aa0ff]">Vamos conversar</p>
+          <h2
+            id="cta-titulo"
+            className="mx-auto mt-6 max-w-3xl text-[clamp(2rem,1.2rem+3.4vw,3.6rem)] font-bold leading-[1.06] tracking-[-0.04em] text-white [text-wrap:balance]"
+          >
+            Tem uma ideia ou um desafio tecnológico?
           </h2>
-        </ScrollReveal>
-
-        <ScrollReveal delay={0.2}>
-          <p className="text-gray-400 text-base sm:text-lg max-w-xl mx-auto mb-8 leading-relaxed">
-            Fale com um dos nossos consultores técnicos e receba uma proposta personalizada sem qualquer compromisso.
+          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-[#a9b6d3]">
+            Vamos transformar o seu desafio numa solução digital.
           </p>
-        </ScrollReveal>
-
-        <ScrollReveal delay={0.3} className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-            href="#contacto"
-            className="btn-primary flex items-center justify-center gap-2 text-base relative z-10"
-            id="cta-orcamento-btn"
-          >
-            Falar com um Consultor
-            <ArrowRight size={18} />
-          </Link>
           <a
-            href="https://wa.me/258840000000"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-secondary flex items-center justify-center gap-2 text-base"
-            id="cta-whatsapp-btn"
+            href="#contacto"
+            className="btn mt-10 h-13 bg-white px-7 text-[#071027] hover:bg-[#e6ecfa]"
           >
-            Contacto via WhatsApp
+            Fale com a ByteMoz
+            <ArrowRight className="arrow size-4" />
           </a>
-        </ScrollReveal>
+        </div>
       </div>
     </section>
   );

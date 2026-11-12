@@ -1,117 +1,94 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
-import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
+import { ThemeProvider } from "next-themes";
+import { SITE } from "@/lib/site";
 import "./globals.css";
 
-const inter = Inter({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-jakarta",
   display: "swap",
 });
 
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)",  color: "#0A0F1E" },
-  ],
-};
+const jetbrains = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-jetbrains",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://bytemoz.co.mz"),
+  metadataBase: new URL(SITE.url),
   title: {
-    default: "ByteMoz — Soluções Tecnológicas em Moçambique",
-    template: "%s | ByteMoz",
+    default: SITE.title,
+    template: "%s · ByteMoz",
   },
-  description:
-    "ByteMoz é uma empresa moçambicana especializada em desenvolvimento de sistemas, websites, aplicações móveis, cibersegurança e consultoria em TI. Soluções digitais premium para empresas e organizações.",
+  description: SITE.description,
+  applicationName: "ByteMoz",
   keywords: [
-    "ByteMoz", "TI Moçambique", "desenvolvimento web Maputo",
-    "aplicações móveis", "cibersegurança", "sistemas empresariais",
-    "suporte informático", "cloud computing", "consultoria TI",
+    "ByteMoz",
+    "empresa de tecnologia Moçambique",
+    "desenvolvimento de software Moçambique",
+    "sistemas web Moçambique",
+    "aplicações",
+    "automação de processos",
+    "transformação digital",
+    "ERP Moçambique",
   ],
-  authors: [{ name: "ByteMoz", url: "https://bytemoz.co.mz" }],
-  creator: "ByteMoz",
-  publisher: "ByteMoz",
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true },
-  },
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "pt_MZ",
-    url: "https://bytemoz.co.mz",
+    url: "/",
     siteName: "ByteMoz",
-    title: "ByteMoz — Soluções Tecnológicas em Moçambique",
-    description:
-      "Transformamos ideias em soluções tecnológicas. Desenvolvimento de sistemas, websites, apps, cibersegurança e muito mais.",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "ByteMoz — Soluções Tecnológicas",
-      },
-    ],
+    title: SITE.title,
+    description: SITE.description,
   },
   twitter: {
     card: "summary_large_image",
-    title: "ByteMoz — Soluções Tecnológicas",
-    description: "Desenvolvimento de sistemas, websites, apps e soluções digitais para empresas.",
-    images: ["/og-image.jpg"],
-    creator: "@bytemoz",
+    title: SITE.title,
+    description: SITE.description,
   },
+  robots: { index: true, follow: true },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f6f8fc" },
+    { media: "(prefers-color-scheme: dark)", color: "#050a19" },
+  ],
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "ByteMoz",
+  slogan: "Conectamos tecnologia.",
+  url: SITE.url,
+  logo: `${SITE.url}/images/logo.png`,
+  email: SITE.email,
+  telephone: SITE.phoneDisplay.replace(/\s/g, ""),
+  description: SITE.description,
+  address: { "@type": "PostalAddress", addressLocality: SITE.location.split(",")[0], addressCountry: "MZ" },
+  areaServed: { "@type": "Country", name: "Moçambique" },
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt" suppressHydrationWarning className={inter.variable}>
+    <html lang="pt-MZ" suppressHydrationWarning className={`${jakarta.variable} ${jetbrains.variable}`}>
       <head>
-        {/* Schema.org JSON-LD */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "ByteMoz",
-              url: "https://bytemoz.co.mz",
-              logo: "https://bytemoz.co.mz/logo.png",
-              description:
-                "Empresa moçambicana de Tecnologia da Informação especializada em desenvolvimento de sistemas, websites, aplicações móveis e cibersegurança.",
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: "Maputo",
-                addressCountry: "MZ",
-              },
-              contactPoint: {
-                "@type": "ContactPoint",
-                telephone: "+258-84-000-0000",
-                contactType: "customer service",
-                availableLanguage: ["Portuguese"],
-              },
-              sameAs: [
-                "https://facebook.com/bytemoz",
-                "https://linkedin.com/company/bytemoz",
-                "https://instagram.com/bytemoz",
-              ],
-            }),
-          }}
-        />
+        {/* Ativa as animações de entrada apenas quando há JavaScript */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>
-      <body className="font-sans antialiased">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange={false}
-        >
+      <body>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <a
+            href="#conteudo"
+            className="sr-only z-[100] rounded-lg bg-brand px-4 py-2 text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+          >
+            Saltar para o conteúdo
+          </a>
           {children}
         </ThemeProvider>
       </body>
